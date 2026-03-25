@@ -6,14 +6,25 @@ use App\Models\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+       // $clients=Client::all();
+       $clients=Client::paginate(5);
+       //$clients=Client::orderBy('nom','desc')->get();
+       /*$search=$request->search;
+        $query=Client::query();
+        $clients=$query->where('nom','like','%'.$search.'%')->get();
+         $clients=$query->where('nom','like','%'.$search.'%')->paginate(6);
+         */
+        return view('clients.index',compact('clients'));
+
     }
 
     /**
@@ -35,9 +46,12 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show($id)
     {
         //
+        $client=Client::findOrFail($id);
+        return view('clients.show',compact('client'));
+
     }
 
     /**
