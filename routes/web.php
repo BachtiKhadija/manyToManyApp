@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
-
+use App\Http\Controllers\CommandeController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -15,3 +15,5 @@ Route::put('/clients/{id}',[ClientController::class,'update'])->name('clients.up
 Route::delete('/clients/{id}',[ClientController::class,'destroy'])->name('clients.destroy');
 */
 Route::resource('/clients',ClientController::class);
+Route::resource('/commandes',CommandeController::class);
+Route::get('/commandes/{idC}/produits/{idP}',[CommandeController::class,'Detach'])->name('commandes.detach');

@@ -20,7 +20,7 @@
             <td>{{$cmd->id}}</td>
             <th>{{$cmd->dateCommande}}</th>
             <th>
-                <a href="">Liste Produits</a>
+                <a href="{{route('commandes.show',$cmd->id)}}">Liste Produits</a>
             </th>
             </tr>
          @endforeach

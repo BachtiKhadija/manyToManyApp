@@ -35,9 +35,11 @@ class CommandeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Commande $commande)
+    public function show($id)
     {
         //
+        $commande=Commande::findOrFail($id);
+        return view('commandes.show',compact('commande'));
     }
 
     /**
@@ -62,5 +64,10 @@ class CommandeController extends Controller
     public function destroy(Commande $commande)
     {
         //
+    }
+    public function Detach($id,$idProd){
+       $commande=Commande::findOrFail($id);
+      $commande->produits()->detach($idProd);
+      return back();
     }
 }
